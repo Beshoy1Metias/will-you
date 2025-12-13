@@ -21,18 +21,19 @@ let noClickCount = 0;
 
 // Emoji rain function
 function createEmojiRain() {
-  const emojis = ["💚", "🌿", "🍀", "✨", "💘", "⭐"];
-  for (let i = 0; i < 15; i++) {
+  const emojis = ["💚", "🌿", "🍀", "✨", "💘"];
+  for (let i = 0; i < 5; i++) {
     const emoji = document.createElement("div");
     emoji.className = "emoji-particle";
     emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
     emoji.style.left = Math.random() * 100 + "%";
     emoji.style.top = -50 + "px";
-    emoji.style.animation = `fall ${3 + Math.random() * 2}s linear forwards`;
+    emoji.style.animation = `fall ${5 + Math.random() * 3}s linear forwards`;
     emoji.style.animationDelay = Math.random() * 0.5 + "s";
+    emoji.style.opacity = "0.5";
     emojiRain.appendChild(emoji);
 
-    setTimeout(() => emoji.remove(), 6000);
+    setTimeout(() => emoji.remove(), 9000);
   }
 }
 
@@ -49,7 +50,7 @@ style.textContent = `
 document.head.appendChild(style);
 
 // Trigger emoji rain continuously
-setInterval(createEmojiRain, 5000);
+setInterval(createEmojiRain, 8000);
 createEmojiRain();
 const specialLines = [
   "\"You're my favorite person\" 💚",

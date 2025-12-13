@@ -10,16 +10,20 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #10b981, #34d399);
-  animation: backgroundShift 8s ease-in-out infinite;
+  background: linear-gradient(-45deg, #10b981, #34d399, #059669, #10b981);
+  background-size: 400% 400%;
+  animation: backgroundGradient 15s ease infinite;
 }
 
-@keyframes backgroundShift {
-  0%, 100% {
-    background: linear-gradient(135deg, #10b981, #34d399);
+@keyframes backgroundGradient {
+  0% {
+    background-position: 0% 50%;
   }
   50% {
-    background: linear-gradient(135deg, #059669, #10b981);
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
   }
 }
 
@@ -27,40 +31,46 @@ body {
   width: 100%;
   max-width: 420px;
   text-align: center;
-  background: rgba(255, 255, 255, 0.95);
-  padding: 24px 20px;
-  border-radius: 18px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18), 0 0 30px rgba(16, 185, 129, 0.3);
+  background: rgba(255, 255, 255, 0.92);
+  padding: 40px 28px;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2), 0 0 40px rgba(16, 185, 129, 0.2);
   margin: 16px;
-  animation: containerGlow 3s ease-in-out infinite;
+  animation: containerGlow 4s ease-in-out infinite;
+  backdrop-filter: blur(10px);
 }
 
 @keyframes containerGlow {
   0%, 100% {
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18), 0 0 20px rgba(16, 185, 129, 0.2);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2), 0 0 30px rgba(16, 185, 129, 0.15);
   }
   50% {
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18), 0 0 40px rgba(16, 185, 129, 0.4);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2), 0 0 50px rgba(16, 185, 129, 0.25);
   }
 }
 
 h1 {
   font-size: 1.7rem;
-  margin-bottom: 6px;
+  margin-bottom: 12px;
   color: #065f46;
+  font-weight: 600;
+  letter-spacing: -0.5px;
 }
 
 .subtitle {
   color: #666;
-  margin-bottom: 14px;
+  margin-bottom: 24px;
+  font-size: 0.95rem;
+  line-height: 1.5;
 }
 
 .gallery {
   display: flex;
-  gap: 8px;
-  margin-bottom: 10px;
+  gap: 10px;
+  margin-bottom: 16px;
   overflow-x: auto;
-  padding-bottom: 6px;
+  padding: 8px 0;
+  justify-content: center;
 }
 
 .gallery::-webkit-scrollbar {
@@ -68,23 +78,24 @@ h1 {
 }
 
 .gallery::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.15);
+  background: rgba(16, 185, 129, 0.3);
   border-radius: 999px;
 }
 
 .gallery-image {
-  flex: 0 0 32%;
-  border-radius: 10px;
+  flex: 0 0 28%;
+  border-radius: 12px;
   object-fit: cover;
   max-width: 100%;
-  height: 100px;
+  height: 110px;
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .gallery-image:hover {
-  transform: scale(1.05);
-  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+  transform: scale(1.08);
+  box-shadow: 0 8px 20px rgba(16, 185, 129, 0.25);
 }
 
 /* Responsive images pattern: scale with container, keep aspect. [web:63][web:71] */
@@ -94,57 +105,65 @@ h1 {
 }
 
 .gallery-caption {
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   color: #10b981;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
   font-weight: 500;
+  letter-spacing: 0.3px;
 }
 
 .small-text {
   font-size: 0.85rem;
   color: #999;
-  margin-bottom: 16px;
+  margin-bottom: 18px;
+  line-height: 1.5;
 }
 
 .buttons {
   display: flex;
   justify-content: center;
-  gap: 16px;
-  margin-bottom: 18px;
+  gap: 20px;
+  margin-bottom: 24px;
+  margin-top: 24px;
 }
 
 button {
-  padding: 14px 26px;
-  min-width: 120px;
-  border-radius: 999px;
+  padding: 14px 32px;
+  min-width: 130px;
+  border-radius: 50px;
   border: none;
-  font-size: 1.05rem;
+  font-size: 1rem;
+  font-weight: 500;
   cursor: pointer;
-  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+  transition: all 0.3s ease;
+  letter-spacing: 0.3px;
 }
 
 .music-btn {
-  background: #d4a373;
+  background: linear-gradient(135deg, #d4a373, #c89968);
   color: white;
-  padding: 10px 20px;
+  padding: 12px 24px;
   font-size: 0.95rem;
-  margin-bottom: 12px;
-  box-shadow: 0 4px 10px rgba(212, 163, 115, 0.3);
+  margin-bottom: 18px;
+  box-shadow: 0 6px 16px rgba(212, 163, 115, 0.25);
+  transition: all 0.3s ease;
 }
 
 #yesBtn {
-  background: #111827;       /* very dark navy */
-  color: #fef9c3;            /* soft yellow text */
-  box-shadow: 0 6px 15px rgba(15, 23, 42, 0.6);
+  background: linear-gradient(135deg, #047857, #059669);
+  color: #fef9c3;
+  box-shadow: 0 8px 20px rgba(4, 120, 87, 0.3);
+  font-weight: 600;
 }
 
 #yesBtn:active {
-  transform: scale(0.98);
+  transform: scale(0.96);
 }
 
 #noBtn {
-  background: #f1f1f1;
+  background: rgba(241, 241, 241, 0.9);
   color: #333;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 #noBtn:active {
@@ -153,17 +172,27 @@ button {
 
 @media (hover: hover) {
   button:hover {
-    transform: translateY(-1px) scale(1.03);
-    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+  }
+
+  #yesBtn:hover {
+    box-shadow: 0 12px 28px rgba(4, 120, 87, 0.35);
+  }
+
+  #noBtn:hover {
+    background: rgba(241, 241, 241, 1);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
   }
 }
 
 #message {
-  font-size: 1.05rem;
-  font-weight: 500;
-  color: #059669;
-  min-height: 1.2em;
-  animation: fadeIn 0.4s ease-in;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #047857;
+  min-height: 2.2em;
+  animation: fadeIn 0.5s ease-in;
+  line-height: 1.6;
 }
 
 @keyframes fadeIn {
@@ -177,17 +206,21 @@ button {
 
 .it {
   display: block;
-  font-size: 0.95em;
+  font-size: 0.9em;
   color: #10b981;
+  font-style: italic;
+  margin-top: 4px;
 }
 
 .random-line {
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   font-style: italic;
   color: #047857;
-  margin-bottom: 12px;
-  min-height: 1.2em;
+  margin-bottom: 16px;
+  min-height: 1.5em;
   animation: fadeInQuote 0.6s ease-in;
+  font-weight: 500;
+  letter-spacing: 0.2px;
 }
 
 @keyframes fadeInQuote {
@@ -238,7 +271,8 @@ button {
   position: fixed;
   font-size: 2rem;
   pointer-events: none;
-  opacity: 0.7;
+  opacity: 0.6;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
 }
 
 .success-screen {
