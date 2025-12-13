@@ -83,7 +83,7 @@ h1 {
 }
 
 .gallery-image {
-  flex: 0 0 32%;
+  flex: 0 0 calc(33.333% - 8px);
   border-radius: 12px;
   object-fit: cover;
   max-width: 100%;
