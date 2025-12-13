@@ -102,8 +102,19 @@ setInterval(displayRandomLine, 4000);
 musicBtn.addEventListener("click", () => {
   bgMusic.muted = false;
   if (bgMusic.paused) {
-    bgMusic.play();
-    musicBtn.textContent = "🎵 Music Playing...";
+    const playPromise = bgMusic.play();
+    if (playPromise !== undefined) {
+      playPromise
+        .then(() => {
+          musicBtn.textContent = "🎵 Music Playing...";
+        })
+        .catch((error) => {
+          console.log("Autoplay prevented:", error);
+          musicBtn.textContent = "🎵 Play Music";
+        });
+    } else {
+      musicBtn.textContent = "🎵 Music Playing...";
+    }
   } else {
     bgMusic.pause();
     musicBtn.textContent = "🎵 Play Music";
