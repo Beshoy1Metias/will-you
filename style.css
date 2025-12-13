@@ -1,0 +1,337 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #10b981, #34d399);
+  animation: backgroundShift 8s ease-in-out infinite;
+}
+
+@keyframes backgroundShift {
+  0%, 100% {
+    background: linear-gradient(135deg, #10b981, #34d399);
+  }
+  50% {
+    background: linear-gradient(135deg, #059669, #10b981);
+  }
+}
+
+.container {
+  width: 100%;
+  max-width: 420px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 24px 20px;
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18), 0 0 30px rgba(16, 185, 129, 0.3);
+  margin: 16px;
+  animation: containerGlow 3s ease-in-out infinite;
+}
+
+@keyframes containerGlow {
+  0%, 100% {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18), 0 0 20px rgba(16, 185, 129, 0.2);
+  }
+  50% {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18), 0 0 40px rgba(16, 185, 129, 0.4);
+  }
+}
+
+h1 {
+  font-size: 1.7rem;
+  margin-bottom: 6px;
+  color: #065f46;
+}
+
+.subtitle {
+  color: #666;
+  margin-bottom: 14px;
+}
+
+.gallery {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+  overflow-x: auto;
+  padding-bottom: 6px;
+}
+
+.gallery::-webkit-scrollbar {
+  height: 4px;
+}
+
+.gallery::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 999px;
+}
+
+.gallery-image {
+  flex: 0 0 32%;
+  border-radius: 10px;
+  object-fit: cover;
+  max-width: 100%;
+  height: 100px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.gallery-image:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+/* Responsive images pattern: scale with container, keep aspect. [web:63][web:71] */
+.gallery-image {
+  max-width: 100%;
+  height: auto;
+}
+
+.gallery-caption {
+  font-size: 0.8rem;
+  color: #10b981;
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+
+.small-text {
+  font-size: 0.85rem;
+  color: #999;
+  margin-bottom: 16px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+button {
+  padding: 14px 26px;
+  min-width: 120px;
+  border-radius: 999px;
+  border: none;
+  font-size: 1.05rem;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.music-btn {
+  background: #d4a373;
+  color: white;
+  padding: 10px 20px;
+  font-size: 0.95rem;
+  margin-bottom: 12px;
+  box-shadow: 0 4px 10px rgba(212, 163, 115, 0.3);
+}
+
+#yesBtn {
+  background: #111827;       /* very dark navy */
+  color: #fef9c3;            /* soft yellow text */
+  box-shadow: 0 6px 15px rgba(15, 23, 42, 0.6);
+}
+
+#yesBtn:active {
+  transform: scale(0.98);
+}
+
+#noBtn {
+  background: #f1f1f1;
+  color: #333;
+}
+
+#noBtn:active {
+  transform: scale(0.95);
+}
+
+@media (hover: hover) {
+  button:hover {
+    transform: translateY(-1px) scale(1.03);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+  }
+}
+
+#message {
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: #059669;
+  min-height: 1.2em;
+  animation: fadeIn 0.4s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.it {
+  display: block;
+  font-size: 0.95em;
+  color: #10b981;
+}
+
+.random-line {
+  font-size: 0.9rem;
+  font-style: italic;
+  color: #047857;
+  margin-bottom: 12px;
+  min-height: 1.2em;
+  animation: fadeInQuote 0.6s ease-in;
+}
+
+@keyframes fadeInQuote {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Allow the No button to move inside the container on larger screens */
+@media (min-width: 480px) {
+  #noBtn {
+    position: relative;
+  }
+}
+
+/* Slightly larger title on tablets/desktops */
+@media (min-width: 768px) {
+  h1 {
+    font-size: 2rem;
+  }
+}
+
+#confetti {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+#emojiRain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.emoji-particle {
+  position: fixed;
+  font-size: 2rem;
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.success-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(16, 185, 129, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  animation: successFade 0.5s ease-in;
+}
+
+@keyframes successFade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.success-text {
+  font-size: 4rem;
+  animation: bounce 0.6s ease-in-out;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+  20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+@keyframes burst {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(calc(cos(1) * 200px), calc(sin(1) * 200px)) scale(0);
+    opacity: 0;
+  }
+}
+
+/* Lightbox */
+.lightbox {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  animation: fadeIn 0.3s ease-in;
+}
+
+.lightbox.active {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 12px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+}
+
+.lightbox .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 32px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.lightbox .close:hover {
+  color: #10b981;
+}
