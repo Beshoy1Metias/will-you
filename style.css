@@ -377,11 +377,16 @@ button {
   left: 0;
   right: 0;
   text-align: center;
-  padding: 12px;
-  background: rgba(16, 185, 129, 0.1);
-  font-size: 0.8rem;
+  padding: 10px 12px;
+  background: rgba(16, 185, 129, 0.12);
+  font-size: 0.75rem;
   color: #10b981;
   font-weight: 500;
-  letter-spacing: 0.3px;
-  backdrop-filter: blur(5px);
+  letter-spacing: 0.2px;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.footer p {
+  margin: 0;
 }
