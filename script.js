@@ -53,30 +53,35 @@ document.head.appendChild(style);
 setInterval(createEmojiRain, 8000);
 createEmojiRain();
 const specialLines = [
-  "\"You're my favorite person\" 💚",
-  "\"La mia persona preferita\" 💚",
-  "\"Stay with me forever\" 🌿",
-  "\"Resta con me per sempre\" 🌿",
-  "\"You make me smile every day\" ✨",
-  "\"Mi fai sorridere ogni giorno\" ✨",
-  "\"I love your laugh\" 🎵",
-  "\"Amo la tua risata\" 🎵",
-  "\"You're so beautiful\" 😍",
-  "\"Sei bellissima\" 😍",
-  "\"I'm so lucky to have you\" 🍀",
-  "\"Sono fortunato ad averti\" 🍀",
-  "\"You complete me\" 💘",
-  "\"Mi completi\" 💘",
-  "\"Forever with you\" 🌍",
-  "\"Per sempre con te\" 🌍",
-  "\"You're my everything\" 👑",
-  "\"Sei il mio tutto\" 👑",
-  "\"I choose you, always\" 💚",
-  "\"Scelgo te, sempre\" 💚",
-  "\"You're my sunshine\" ☀️",
-  "\"Sei il mio sole\" ☀️",
-  "\"Te amo\" 💗",
-  "\"I'm in love with you\" 💗"
+    
+  "\"I wanna do like the cat forever\" 🐾",
+  "\"Voglio fare come il gatto per sempre\" 🐾",
+  "\"You're my favorite person\" ❤️",
+  "\"Sei la mia persona preferita\" ❤️",
+
+  "\"Stay with me forever\" 💞",
+  "\"Resta con me per sempre\" 💞",
+
+  "\"You make me smile every day\" 💖",
+  "\"Mi fai sorridere ogni giorno\" 💖",
+
+  "\"I love your voice\" 😊",
+  "\"Amo la tua voce\" 😊",
+
+  "\"Forever with you\" ♾️❤️",
+  "\"Per sempre con te\" ♾️❤️",
+
+  "\"You're my everything\" 💓",
+  "\"Sei il mio tutto\" 💓",
+
+  "\"I wanna do like the cat forever\" 🐾",
+  "\"Voglio fare come il gatto per sempre\" 🐾",
+
+  "\"Te amo\" 💞",
+  "\"Ti amo\" 💞",
+
+  "\"I'm in love with you\" 💞",
+  "\"Sono innamorato di te\" 💞"
 ];
 
 // Display a random line when the page loads
