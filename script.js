@@ -8,6 +8,32 @@ const canvas = document.getElementById('confetti');
 const ctx = canvas.getContext('2d');
 const emojiRain = document.getElementById('emojiRain');
 
+// Typewriter effect for heading
+function typeWriter() {
+  const h1 = document.querySelector('h1');
+  const englishSpan = h1.querySelector('span:first-child');
+  const italianSpan = h1.querySelector('.it');
+  
+  const englishText = 'Will you be my girlfriend, Laura?';
+  const italianText = 'Vuoi essere la mia ragazza, Laura?';
+  
+  let index = 0;
+  
+  function typeCharacter() {
+    if (index < englishText.length) {
+      englishSpan.textContent = englishText.substring(0, index + 1);
+      italianSpan.textContent = italianText.substring(0, index + 1);
+      index++;
+      setTimeout(typeCharacter, 40);
+    }
+  }
+  
+  typeCharacter();
+}
+
+// Start typewriter on page load
+document.addEventListener('DOMContentLoaded', typeWriter);
+
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 window.addEventListener('resize', () => {
@@ -247,15 +273,24 @@ lightbox.addEventListener('click', e => {
 
 function moveNoButton(event) {
   if (event) event.preventDefault();
+  const noBtn = document.getElementById('noBtn');
   const container = document.querySelector('.container');
-  const rect = container.getBoundingClientRect();
+  
+  if (!container) return;
+  
+  const containerRect = container.getBoundingClientRect();
   const btnRect = noBtn.getBoundingClientRect();
   
-  const maxMoveX = (rect.width - btnRect.width) / 2 - 15;
-  const maxMoveY = (rect.height - btnRect.height) / 2 - 15;
+  // Calculate safe boundaries within container
+  const maxX = containerRect.width - btnRect.width - 20;
+  const maxY = containerRect.height - btnRect.height - 20;
   
-  const randomX = (Math.random() - 0.5) * maxMoveX * 2;
-  const randomY = (Math.random() - 0.5) * maxMoveY * 2;
+  const randomX = Math.random() * maxX - maxX / 2;
+  const randomY = Math.random() * maxY - maxY / 2;
   
-  noBtn.style.transform = `translate(${randomX}px, ${randomY}px)`;
+  // Clamp to safe bounds
+  const clampedX = Math.max(-maxX / 2 + 20, Math.min(maxX / 2 - 20, randomX));
+  const clampedY = Math.max(-maxY / 2 + 20, Math.min(maxY / 2 - 20, randomY));
+  
+  noBtn.style.transform = `translate(${clampedX}px, ${clampedY}px)`;
 }
