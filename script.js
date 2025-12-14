@@ -259,7 +259,6 @@ lightbox.addEventListener("click", (e) => {
     lightbox.classList.remove("active");
   }
 });
-
 function moveNoButton(event) {
   if (event) event.preventDefault();
 
@@ -267,18 +266,18 @@ function moveNoButton(event) {
   const rect = container.getBoundingClientRect();
   const btnRect = noBtn.getBoundingClientRect();
 
-  const maxX = rect.width - btnRect.width - 20;
-  const maxY = rect.height - btnRect.height - 20;
+  // Calculate the maximum distance the button can safely move within container
+  const maxMoveX = (rect.width - btnRect.width) / 2 - 10;
+  const maxMoveY = (rect.height - btnRect.height) / 2 - 10;
 
-  const randomX = Math.random() * maxX - (maxX / 2);
-  const randomY = Math.random() * maxY - (maxY / 2);
+  // Generate random movement centered around 0, within safe bounds
+  const randomX = (Math.random() - 0.5) * maxMoveX * 2;
+  const randomY = (Math.random() - 0.5) * maxMoveY * 2;
 
-  // Clamp values to ensure button stays within container
-  const clampedX = Math.max(-maxX / 2, Math.min(maxX / 2, randomX));
-  const clampedY = Math.max(-maxY / 2, Math.min(maxY / 2, randomY));
-
-  noBtn.style.transform = `translate(${clampedX}px, ${clampedY}px)`;
+  noBtn.style.transform = `translate(${randomX}px, ${randomY}px)`;
 }
+
+
 
 
 
