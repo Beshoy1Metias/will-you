@@ -17,10 +17,15 @@ function typeWriter() {
   const englishText = 'Will you be my girlfriend, Laura?';
   const italianText = 'Vuoi essere la mia ragazza, Laura?';
   
+  // Clear the text first
+  englishSpan.textContent = '';
+  italianSpan.textContent = '';
+  
   let index = 0;
+  const maxLength = Math.max(englishText.length, italianText.length);
   
   function typeCharacter() {
-    if (index < englishText.length) {
+    if (index < maxLength) {
       englishSpan.textContent = englishText.substring(0, index + 1);
       italianSpan.textContent = italianText.substring(0, index + 1);
       index++;
