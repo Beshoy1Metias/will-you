@@ -59,6 +59,10 @@ const specialLines = [
   "\"You're my favorite person\" ❤️",
   "\"Sei la mia persona preferita\" ❤️",
 
+  "\"Mi manchi\" ❤️",
+
+  
+
   "\"Stay with me forever\" 💞",
   "\"Resta con me per sempre\" 💞",
 
@@ -79,6 +83,8 @@ const specialLines = [
 
   "\"Te amo\" 💞",
   "\"Ti amo\" 💞",
+
+"\"Mi manchi tanto\" ❤️",
 
   "\"I'm in love with you\" 💞",
   "\"Sono innamorato di te\" 💞"
@@ -269,3 +275,4 @@ function moveNoButton(event) {
 
   noBtn.style.transform = `translate(${randomX}px, ${randomY}px)`;
 }
+
