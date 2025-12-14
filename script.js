@@ -129,10 +129,25 @@ function displayRandomLine() {
 
 setInterval(displayRandomLine, 2500);
 
+// Fade in audio volume
+function fadeInMusic() {
+  bgMusic.volume = 0;
+  bgMusic.muted = false;
+  const fadeInterval = setInterval(() => {
+    if (bgMusic.volume < 1) {
+      bgMusic.volume = Math.min(1, bgMusic.volume + 0.15);
+    } else {
+      clearInterval(fadeInterval);
+    }
+  }, 100);
+}
+
 // Music control
 musicBtn.addEventListener('click', () => {
   bgMusic.muted = false;
   if (bgMusic.paused) {
+    bgMusic.currentTime = 0;
+    fadeInMusic();
     const playPromise = bgMusic.play();
     if (playPromise !== undefined) {
       playPromise.then(() => {
@@ -154,7 +169,8 @@ yesBtn.addEventListener('click', () => {
   launchConfetti();
   createSuccessAnimation();
   triggerHaptic();
-  bgMusic.muted = false;
+  bgMusic.currentTime = 0;
+  fadeInMusic();
   bgMusic.play();
 });
 
@@ -274,23 +290,16 @@ lightbox.addEventListener('click', e => {
 function moveNoButton(event) {
   if (event) event.preventDefault();
   const noBtn = document.getElementById('noBtn');
-  const container = document.querySelector('.container');
+  const buttons = document.querySelector('.buttons');
   
-  if (!container) return;
+  if (!buttons) return;
   
-  const containerRect = container.getBoundingClientRect();
-  const btnRect = noBtn.getBoundingClientRect();
+  // Safe movement within buttons container - constrained bounds for mobile
+  const maxMoveX = 60;
+  const maxMoveY = 50;
   
-  // Calculate safe boundaries within container
-  const maxX = containerRect.width - btnRect.width - 20;
-  const maxY = containerRect.height - btnRect.height - 20;
+  const randomX = (Math.random() - 0.5) * maxMoveX;
+  const randomY = (Math.random() - 0.5) * maxMoveY;
   
-  const randomX = Math.random() * maxX - maxX / 2;
-  const randomY = Math.random() * maxY - maxY / 2;
-  
-  // Clamp to safe bounds
-  const clampedX = Math.max(-maxX / 2 + 20, Math.min(maxX / 2 - 20, randomX));
-  const clampedY = Math.max(-maxY / 2 + 20, Math.min(maxY / 2 - 20, randomY));
-  
-  noBtn.style.transform = `translate(${clampedX}px, ${clampedY}px)`;
+  noBtn.style.transform = `translate(${randomX}px, ${randomY}px)`;
 }
