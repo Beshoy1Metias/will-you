@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Will you be my girlfriend?</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#10b981">
 </head>
 <body>
   <audio id="bgMusic" loop autoplay muted>
@@ -13,48 +15,45 @@
   </audio>
 
   <div id="emojiRain"></div>
-
   <div class="container">
     <h1>
-      Will you be my girlfriend, Laura?<br />
+      <span>Will you be my girlfriend, Laura?</span><br>
       <span class="it">Vuoi essere la mia ragazza, Laura?</span>
     </h1>
-
+    
     <p class="subtitle">
-      and stay with me forever 💘<br />
-      <span class="it">e resta con me per sempre 💘</span>
+      and stay with me forever<br>
+      <span class="it">e resta con me per sempre</span>
     </p>
 
     <div class="gallery">
-      <img src="photo1.jpg" alt="Noi due 1" class="gallery-image" />
-      <img src="photo2.JPG" alt="Noi due 2" class="gallery-image" />
-      <img src="photo3.jpg" alt="Noi due 3" class="gallery-image" />
+      <img src="photo1.jpg" alt="Noi due 1" class="gallery-image">
+      <img src="photo2.jpg" alt="Noi due 2" class="gallery-image">
+      <img src="photo3.jpg" alt="Noi due 3" class="gallery-image">
     </div>
-
-    <p class="gallery-caption">Our memories 💚 I nostri ricordi</p>
+    <p class="gallery-caption">Our memories / I nostri ricordi</p>
 
     <p class="small-text">
-      Swipe through the memories, then answer carefully.<br />
-      <span class="it">Scorri i ricordi… e poi rispondi con attenzione.</span>
+      Swipe through the memories, then answer carefully.<br>
+      <span class="it">Scorri i ricordi e poi rispondi con attenzione.</span>
     </p>
 
-    <button id="musicBtn" class="music-btn">🎵 Play Music</button>
-
+    <button id="musicBtn" class="music-btn">Play Music</button>
     <p class="random-line" id="randomLine"></p>
 
     <div class="buttons">
-      <button id="yesBtn">Yes / Sì ❤️</button>
-      <button id="noBtn">No 😭</button>
+      <button id="yesBtn">Yes ❤️</button>
+      <button id="noBtn">No</button>
     </div>
 
     <p id="message"></p>
   </div>
 
   <canvas id="confetti"></canvas>
-
+  
   <div id="lightbox" class="lightbox">
-    <img id="lightboxImg" src="" alt="">
     <span class="close">&times;</span>
+    <img id="lightboxImg" src="" alt="">
   </div>
 
   <footer class="footer">
@@ -62,8 +61,11 @@
     <p>Fatto con ❤️ per Laura da Beshoy</p>
   </footer>
 
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js');
+    }
+  </script>
   <script src="script.js"></script>
 </body>
 </html>
-
-
