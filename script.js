@@ -267,12 +267,18 @@ function moveNoButton(event) {
   const rect = container.getBoundingClientRect();
   const btnRect = noBtn.getBoundingClientRect();
 
-  const maxX = rect.width - btnRect.width;
-  const maxY = rect.height - btnRect.height;
+  const maxX = rect.width - btnRect.width - 20;
+  const maxY = rect.height - btnRect.height - 20;
 
-  const randomX = Math.random() * maxX - (rect.width / 2 - btnRect.width / 2);
-  const randomY = Math.random() * maxY - (rect.height / 2 - btnRect.height / 2);
+  const randomX = Math.random() * maxX - (maxX / 2);
+  const randomY = Math.random() * maxY - (maxY / 2);
 
-  noBtn.style.transform = `translate(${randomX}px, ${randomY}px)`;
+  // Clamp values to ensure button stays within container
+  const clampedX = Math.max(-maxX / 2, Math.min(maxX / 2, randomX));
+  const clampedY = Math.max(-maxY / 2, Math.min(maxY / 2, randomY));
+
+  noBtn.style.transform = `translate(${clampedX}px, ${clampedY}px)`;
 }
+
+
 
