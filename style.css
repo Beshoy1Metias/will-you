@@ -378,7 +378,7 @@ button {
   right: 0;
   text-align: center;
   padding: 10px 12px;
-  background: rgba(16, 185, 129, 0.12);
+  background: rgba(16, 185, 129, 0.25);
   font-size: 0.75rem;
   color: #10b981;
   font-weight: 500;
@@ -390,3 +390,4 @@ button {
 .footer p {
   margin: 0;
 }
+
