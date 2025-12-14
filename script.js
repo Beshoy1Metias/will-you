@@ -13,6 +13,8 @@ function typeWriter() {
   const englishSpan = document.getElementById('englishHeading');
   const italianSpan = document.getElementById('italianHeading');
   
+  if (!englishSpan || !italianSpan) return;
+  
   const englishText = 'Will you be my girlfriend, Laura?';
   const italianText = 'Vuoi essere la mia ragazza, Laura?';
   
@@ -307,3 +309,8 @@ function moveNoButton(event) {
   
   noBtn.style.transform = `translate(${randomX}px, ${randomY}px)`;
 }
+
+// Run typewriter effect after a tiny delay to ensure DOM is ready
+window.addEventListener('load', () => {
+  setTimeout(typeWriter, 100);
+});
