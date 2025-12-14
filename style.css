@@ -46,13 +46,13 @@ body {
 }
 
 h1 {
-  font-size: 1.35rem;
+  font-size: 1.15rem;
   margin-bottom: 10px;
   color: #065f46;
   font-weight: 700;
   letter-spacing: -0.3px;
   line-height: 1.4;
-  min-height: 3.2em;
+  min-height: 2.8em;
   font-family: 'Segoe UI', system-ui, sans-serif;
   background: linear-gradient(135deg, #065f46, #047857);
   -webkit-background-clip: text;
