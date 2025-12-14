@@ -285,9 +285,6 @@ button {
   font-weight: 500;
   letter-spacing: 0.3px;
 }
-  font-weight: 500;
-  letter-spacing: 0.2px;
-}
 
 @keyframes fadeInQuote {
   from { opacity: 0; transform: translateY(-5px); }
@@ -439,8 +436,6 @@ button {
   letter-spacing: 0.2px;
   z-index: 10;
   backdrop-filter: blur(4px);
-}
-  pointer-events: none;
 }
 
 .footer p { margin: 0; }
