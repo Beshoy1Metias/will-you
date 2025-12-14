@@ -46,28 +46,30 @@ body {
 }
 
 h1 {
-  font-size: 1.15rem;
+  font-size: 1.05rem;
   margin-bottom: 10px;
   color: #065f46;
   font-weight: 700;
   letter-spacing: -0.3px;
-  line-height: 1.4;
-  min-height: 2.8em;
+  line-height: 1.5;
+  min-height: auto;
   font-family: 'Segoe UI', system-ui, sans-serif;
-  background: linear-gradient(135deg, #065f46, #047857);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
 }
 
 h1 span {
-  display: inline;
-  border-right: 3px solid #10b981;
-  padding-right: 4px;
+  display: block;
   background: linear-gradient(135deg, #065f46, #047857);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  min-height: 1.5em;
+}
+
+h1 span.it {
+  font-size: 0.9em;
+  color: #10b981;
+  font-style: italic;
+  margin-top: 6px;
 }
 
 h1 span:last-child {

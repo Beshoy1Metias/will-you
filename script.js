@@ -10,9 +10,8 @@ const emojiRain = document.getElementById('emojiRain');
 
 // Typewriter effect for heading
 function typeWriter() {
-  const h1 = document.querySelector('h1');
-  const englishSpan = h1.querySelector('span:first-child');
-  const italianSpan = h1.querySelector('.it');
+  const englishSpan = document.getElementById('englishHeading');
+  const italianSpan = document.getElementById('italianHeading');
   
   const englishText = 'Will you be my girlfriend, Laura?';
   const italianText = 'Vuoi essere la mia ragazza, Laura?';
