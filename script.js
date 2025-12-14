@@ -101,7 +101,7 @@ function displayRandomLine() {
   setTimeout(() => randomLine.style.animation = 'fadeInQuote 0.6s ease-in', 10);
 }
 
-setInterval(displayRandomLine, 4000);
+setInterval(displayRandomLine, 2500);
 
 // Music control
 musicBtn.addEventListener('click', () => {
@@ -251,8 +251,8 @@ function moveNoButton(event) {
   const rect = container.getBoundingClientRect();
   const btnRect = noBtn.getBoundingClientRect();
   
-  const maxMoveX = rect.width - btnRect.width / 2 - 10;
-  const maxMoveY = rect.height - btnRect.height / 2 - 10;
+  const maxMoveX = (rect.width - btnRect.width) / 2 - 15;
+  const maxMoveY = (rect.height - btnRect.height) / 2 - 15;
   
   const randomX = (Math.random() - 0.5) * maxMoveX * 2;
   const randomY = (Math.random() - 0.5) * maxMoveY * 2;
