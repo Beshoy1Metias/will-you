@@ -64,7 +64,6 @@ h1 span {
   display: inline;
   border-right: 3px solid #10b981;
   padding-right: 4px;
-  animation: blink 0.7s infinite;
   background: linear-gradient(135deg, #065f46, #047857);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
