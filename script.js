@@ -2,7 +2,7 @@ const yesBtn = document.getElementById('yesBtn');
 const noBtn = document.getElementById('noBtn');
 const message = document.getElementById('message');
 const randomLine = document.getElementById('randomLine');
-const musicBtn = document.getElementById('musicBtn');
+const musicBtn = document.getElementById('audioToggleBtn');
 const bgMusic = document.getElementById('bgMusic');
 const canvas = document.getElementById('confetti');
 const ctx = canvas.getContext('2d');
@@ -273,62 +273,3 @@ document.querySelectorAll('.gallery-image').forEach(img => {
 });
 
 lightbox.addEventListener('click', () => lightbox.classList.remove('active'));
-
-// --- Award Winning Interactions ---
-
-// 1. 3D Tilt Effect
-const container = document.querySelector('.container');
-
-document.addEventListener('mousemove', (e) => {
-  if (window.innerWidth < 768) return; // Disable on mobile to save battery/perf
-
-  const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
-  const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
-
-  container.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
-});
-
-// Mobile Gyroscope Tilt (Subtle)
-if (window.DeviceOrientationEvent) {
-  window.addEventListener('deviceorientation', (e) => {
-    if (window.innerWidth >= 768) return;
-
-    // Clamp values
-    const tiltX = Math.min(Math.max((e.beta - 45) / 2, -10), 10); // forward/back
-    const tiltY = Math.min(Math.max(e.gamma / 2, -10), 10); // left/right
-
-    container.style.transform = `rotateY(${tiltY}deg) rotateX(${-tiltX}deg)`;
-  });
-}
-
-// Reset on mouse leave
-document.addEventListener('mouseleave', () => {
-  container.style.transform = `rotateY(0deg) rotateX(0deg)`;
-  container.style.transition = 'transform 0.5s ease';
-});
-
-document.addEventListener('mouseenter', () => {
-  container.style.transition = 'none';
-});
-
-
-// 2. Magnetic Buttons
-const magBtns = document.querySelectorAll('button:not(#noBtn)'); // Exclude 'No' button as it runs away
-
-magBtns.forEach(btn => {
-  btn.addEventListener('mousemove', (e) => {
-    const position = btn.getBoundingClientRect();
-    const x = e.pageX - position.left - position.width / 2;
-    const y = e.pageY - position.top - position.height / 2;
-
-    // Move button towards cursor
-    btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
-  });
-
-  btn.addEventListener('mouseleave', () => {
-    btn.style.transform = 'translate(0px, 0px)';
-    btn.style.transition = 'transform 0.3s ease';
-    setTimeout(() => btn.style.transition = '', 300); // Clear transition to allow fast movements
-  });
-});
-

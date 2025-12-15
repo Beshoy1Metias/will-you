@@ -243,9 +243,14 @@ h1 span {
 }
 
 .music-btn:hover {
-  transform: translateY(-2px);
   background: white;
   box-shadow: 0 8px 20px rgba(16, 185, 129, 0.1);
+}
+
+@media (hover: hover) {
+  .music-btn:hover {
+    transform: translateY(-2px);
+  }
 }
 
 /* Random Line Area */
