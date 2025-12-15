@@ -264,8 +264,6 @@ function createHeartExplosion() {
 // Lightbox Navigation
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightboxImg');
-const prevBtn = document.getElementById('prevBtn');
-const nextBtn = document.getElementById('nextBtn');
 const images = document.querySelectorAll('.gallery-image');
 let currentImageIndex = 0;
 
@@ -303,10 +301,6 @@ function showImage(index) {
   }, 150);
 }
 
-// Arrow Clicks
-prevBtn.addEventListener('click', (e) => { e.stopPropagation(); showImage(currentImageIndex - 1); });
-nextBtn.addEventListener('click', (e) => { e.stopPropagation(); showImage(currentImageIndex + 1); });
-
 // Keyboard Nav
 document.addEventListener('keydown', (e) => {
   if (!lightbox.classList.contains('active')) return;
@@ -315,22 +309,33 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') lightbox.classList.remove('active');
 });
 
-// Swipe Logic (Touch)
-let touchStartX = 0;
-let touchEndX = 0;
+// Swipe Logic (Touch & Mouse)
+let startX = 0;
+let endX = 0;
 
+// Touch Events
 lightbox.addEventListener('touchstart', (e) => {
-  touchStartX = e.changedTouches[0].screenX;
+  startX = e.changedTouches[0].screenX;
 }, { passive: true });
 
 lightbox.addEventListener('touchend', (e) => {
-  touchEndX = e.changedTouches[0].screenX;
+  endX = e.changedTouches[0].screenX;
   handleSwipe();
 }, { passive: true });
 
+// Mouse Events (for desktop "swipe")
+lightbox.addEventListener('mousedown', (e) => {
+  startX = e.screenX;
+});
+
+lightbox.addEventListener('mouseup', (e) => {
+  endX = e.screenX;
+  handleSwipe();
+});
+
 function handleSwipe() {
-  const swipeThreshold = 50; // Minimum distance to count as swipe
-  const difference = touchStartX - touchEndX;
+  const swipeThreshold = 50; // Minimum distance
+  const difference = startX - endX;
 
   if (Math.abs(difference) > swipeThreshold) {
     if (difference > 0) {
