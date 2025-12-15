@@ -1,11 +1,12 @@
 {
-  "name": "Will you be my girlfriend?",
-  "short_name": "Be mine ❤️",
-  "description": "A special message for Laura",
-  "start_url": "/",
+  "name": "For Laura ❤️",
+  "short_name": "For Laura",
+  "description": "A digital letter crafted for Laura",
+  "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#10b981",
-  "theme_color": "#10b981",
+  "background_color": "#ecfdf5",
+  "theme_color": "#ecfdf5",
+  "orientation": "portrait",
   "icons": [
     {
       "src": "icon-192.png",
@@ -13,7 +14,7 @@
       "type": "image/png"
     },
     {
-      "src": "icon-512.png", 
+      "src": "icon-512.png",
       "sizes": "512x512",
       "type": "image/png"
     }
