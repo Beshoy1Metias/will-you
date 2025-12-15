@@ -36,23 +36,35 @@ const specialLines = [
   "I'm in love with you", "Sono innamorato di te"
 ];
 
-function displayRandomLine() {
-  const randomIndex = Math.floor(Math.random() * specialLines.length);
-  // Fade out
-  randomLine.style.opacity = '0';
-  randomLine.style.transform = 'translateY(5px)';
-  randomLine.style.transition = 'all 0.4s ease';
+// Random Lines Logic
+function setupRandomLine(elementId, interval) {
+  const element = document.getElementById(elementId);
+  if (!element) return;
 
-  setTimeout(() => {
-    randomLine.textContent = specialLines[randomIndex];
-    // Fade in
-    randomLine.style.opacity = '1';
-    randomLine.style.transform = 'translateY(0)';
-  }, 400);
+  function update() {
+    const randomIndex = Math.floor(Math.random() * specialLines.length);
+    // Fade out
+    element.style.opacity = '0';
+    element.style.transform = 'translateY(5px)';
+    element.style.transition = 'all 0.4s ease';
+
+    setTimeout(() => {
+      element.textContent = specialLines[randomIndex];
+      // Fade in
+      element.style.opacity = '1'; // or 0.8 for secondary
+      element.style.transform = 'translateY(0)';
+    }, 400);
+  }
+
+  // Initial call
+  update();
+  // Loop
+  setInterval(update, interval);
 }
 
-// Start randomness
-setInterval(displayRandomLine, 3500);
+// Start randomness (staggered)
+setupRandomLine('randomLine', 3500);
+setTimeout(() => setupRandomLine('extraLine', 4100), 2000); // Offset start
 
 // Initial Load
 window.addEventListener('load', () => {
