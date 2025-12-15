@@ -261,15 +261,84 @@ function createHeartExplosion() {
   }
 }
 
-// Lightbox
+// Lightbox Navigation
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightboxImg');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+const images = document.querySelectorAll('.gallery-image');
+let currentImageIndex = 0;
 
-document.querySelectorAll('.gallery-image').forEach(img => {
+// Open Lightbox
+images.forEach((img, index) => {
   img.addEventListener('click', () => {
     lightbox.classList.add('active');
     lightboxImg.src = img.src;
+    currentImageIndex = index;
   });
 });
 
-lightbox.addEventListener('click', () => lightbox.classList.remove('active'));
+// Close Lightbox
+lightbox.addEventListener('click', (e) => {
+  if (e.target === lightbox || e.target.classList.contains('close')) {
+    lightbox.classList.remove('active');
+  }
+});
+
+// Navigation Functions
+function showImage(index) {
+  // Wrap around
+  if (index < 0) index = images.length - 1;
+  if (index >= images.length) index = 0;
+
+  // Update state
+  currentImageIndex = index;
+
+  // Update visual
+  const img = images[currentImageIndex];
+  lightboxImg.style.opacity = '0'; // Fade switch hint
+  setTimeout(() => {
+    lightboxImg.src = img.src;
+    lightboxImg.style.opacity = '1';
+  }, 150);
+}
+
+// Arrow Clicks
+prevBtn.addEventListener('click', (e) => { e.stopPropagation(); showImage(currentImageIndex - 1); });
+nextBtn.addEventListener('click', (e) => { e.stopPropagation(); showImage(currentImageIndex + 1); });
+
+// Keyboard Nav
+document.addEventListener('keydown', (e) => {
+  if (!lightbox.classList.contains('active')) return;
+  if (e.key === 'ArrowLeft') showImage(currentImageIndex - 1);
+  if (e.key === 'ArrowRight') showImage(currentImageIndex + 1);
+  if (e.key === 'Escape') lightbox.classList.remove('active');
+});
+
+// Swipe Logic (Touch)
+let touchStartX = 0;
+let touchEndX = 0;
+
+lightbox.addEventListener('touchstart', (e) => {
+  touchStartX = e.changedTouches[0].screenX;
+}, { passive: true });
+
+lightbox.addEventListener('touchend', (e) => {
+  touchEndX = e.changedTouches[0].screenX;
+  handleSwipe();
+}, { passive: true });
+
+function handleSwipe() {
+  const swipeThreshold = 50; // Minimum distance to count as swipe
+  const difference = touchStartX - touchEndX;
+
+  if (Math.abs(difference) > swipeThreshold) {
+    if (difference > 0) {
+      // Swiped Left -> Next Image
+      showImage(currentImageIndex + 1);
+    } else {
+      // Swiped Right -> Prev Image
+      showImage(currentImageIndex - 1);
+    }
+  }
+}
