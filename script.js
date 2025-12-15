@@ -85,17 +85,32 @@ function fadeInMusic() {
   }, 100); // Check every 100ms
 }
 
+
+
+let isMusicPlaying = false;
+
 musicBtn.addEventListener('click', () => {
   bgMusic.muted = false;
-  if (bgMusic.paused) {
+
+  if (!isMusicPlaying) {
+    // Play
     bgMusic.currentTime = 0;
     fadeInMusic();
-    bgMusic.play().then(() => {
-      // Keep the playing state consistent
-      updateMusicButtonState(true);
-    }).catch(e => console.log("Audio play failed", e));
+    const playPromise = bgMusic.play();
+
+    if (playPromise !== undefined) {
+      playPromise.then(() => {
+        isMusicPlaying = true;
+        updateMusicButtonState(true);
+      }).catch(error => {
+        console.log("Audio play failed", error);
+        // Fallback or retry logic could go here, but usually interaction allows it
+      });
+    }
   } else {
+    // Pause
     bgMusic.pause();
+    isMusicPlaying = false;
     updateMusicButtonState(false);
   }
 });
