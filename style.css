@@ -158,13 +158,22 @@ h1 span {
 }
 
 .it {
-  font-family: 'Outfit', sans-serif;
-  font-size: 1rem;
+  font-family: 'Playfair Display', serif;
+  /* Unified font family */
+  font-size: 0.85rem;
+  /* Smaller, caption-like */
   font-weight: 400;
+  /* Lighter weight */
   color: var(--primary-dark);
-  opacity: 0.8;
+  opacity: 0.6;
+  /* Subtle */
   margin-top: 4px;
+  /* Tighter to main text */
   font-style: italic;
+  letter-spacing: 0.5px;
+  display: block;
+  /* Ensure block layout */
+  margin-bottom: 2px;
 }
 
 .subtitle {
@@ -172,8 +181,12 @@ h1 span {
   color: var(--text-secondary);
   line-height: 1.5;
   margin-bottom: 24px;
-  opacity: 0.9;
+  opacity: 0;
+  /* Hidden initially */
+  transform: translateY(10px);
+  transition: opacity 1s ease, transform 1s ease;
 }
+
 
 /* Gallery */
 .gallery {

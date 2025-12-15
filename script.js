@@ -69,13 +69,27 @@ setTimeout(() => setupRandomLine('extraLine', 4100), 2000); // Offset start
 // Initial Load
 window.addEventListener('load', () => {
   const h1Spans = document.querySelectorAll('h1 span');
+  const subtitle = document.querySelector('.subtitle');
+
   // Add pulse class to yes button
   setTimeout(() => yesBtn.classList.add('pulse'), 2000);
 
+  // 1. English Typing
   if (h1Spans[0]) typeWriter(h1Spans[0], "Will you be my girlfriend, Laura?", 60);
+
+  // 2. Italian Typing (Delayed)
   setTimeout(() => {
     if (h1Spans[1]) typeWriter(h1Spans[1], "Vuoi essere la mia ragazza, Laura?", 50);
   }, 2500);
+
+  // 3. Subtitle Fade In (After typing finishes)
+  // 2500ms start + (32 chars * 50ms) = ~4100ms finish. Let's do 4500ms.
+  setTimeout(() => {
+    if (subtitle) {
+      subtitle.style.opacity = '0.9';
+      subtitle.style.transform = 'translateY(0)';
+    }
+  }, 4500);
 
   displayRandomLine();
 
