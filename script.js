@@ -42,7 +42,7 @@ function displayRandomLine() {
   randomLine.style.opacity = '0';
   randomLine.style.transform = 'translateY(5px)';
   randomLine.style.transition = 'all 0.4s ease';
-  
+
   setTimeout(() => {
     randomLine.textContent = specialLines[randomIndex];
     // Fade in
@@ -59,14 +59,14 @@ window.addEventListener('load', () => {
   const h1Spans = document.querySelectorAll('h1 span');
   // Add pulse class to yes button
   setTimeout(() => yesBtn.classList.add('pulse'), 2000);
-  
+
   if (h1Spans[0]) typeWriter(h1Spans[0], "Will you be my girlfriend, Laura?", 60);
   setTimeout(() => {
     if (h1Spans[1]) typeWriter(h1Spans[1], "Vuoi essere la mia ragazza, Laura?", 50);
   }, 2500);
-  
+
   displayRandomLine();
-  
+
   // Resize canvas
   resizeCanvas();
 });
@@ -75,13 +75,14 @@ window.addEventListener('load', () => {
 function fadeInMusic() {
   bgMusic.volume = 0;
   bgMusic.muted = false;
+  // Smoother fade in
   const fadeInterval = setInterval(() => {
-    if (bgMusic.volume < 0.9) {
-      bgMusic.volume += 0.05;
+    if (bgMusic.volume < 0.95) {
+      bgMusic.volume += 0.02; // Slower increment
     } else {
       clearInterval(fadeInterval);
     }
-  }, 200);
+  }, 100); // Check every 100ms
 }
 
 musicBtn.addEventListener('click', () => {
@@ -90,16 +91,24 @@ musicBtn.addEventListener('click', () => {
     bgMusic.currentTime = 0;
     fadeInMusic();
     bgMusic.play().then(() => {
-      musicBtn.innerHTML = '<span>🎵</span> Music Playing';
-      musicBtn.style.background = '#fef9c3';
-      musicBtn.style.borderColor = '#10b981';
+      // Keep the playing state consistent
+      updateMusicButtonState(true);
     }).catch(e => console.log("Audio play failed", e));
   } else {
     bgMusic.pause();
-    musicBtn.innerHTML = 'Play Music';
-    musicBtn.style.background = 'white';
+    updateMusicButtonState(false);
   }
 });
+
+function updateMusicButtonState(isPlaying) {
+  if (isPlaying) {
+    musicBtn.innerHTML = '<span>Playing Our Song 🎵</span>';
+    musicBtn.classList.add('playing');
+  } else {
+    musicBtn.innerHTML = '<span>Play Our Song 🎵</span>';
+    musicBtn.classList.remove('playing');
+  }
+}
 
 // --- Interaction Logic ---
 // Yes Button
@@ -108,14 +117,14 @@ yesBtn.addEventListener('click', () => {
   noBtn.style.transition = '0.5s';
   noBtn.style.opacity = '0';
   noBtn.style.pointerEvents = 'none';
-  
+
   yesBtn.innerHTML = 'Yes! ❤️';
   yesBtn.style.transform = 'scale(1.1)';
-  
+
   // Confetti & Rain
   launchConfetti();
   createHeartExplosion();
-  
+
   // Message
   message.innerHTML = `
     <div style="animation: fadeIn 1s ease">
@@ -123,10 +132,10 @@ yesBtn.addEventListener('click', () => {
       <span class="it">La risposta giusta. Ora sei intrappolata con me per sempre ❤️</span>
     </div>
   `;
-  
+
   // Vibrate
   if (navigator.vibrate) navigator.vibrate([100, 50, 100]);
-  
+
   // Ensure music plays
   if (bgMusic.paused) {
     bgMusic.currentTime = 0;
@@ -138,25 +147,25 @@ yesBtn.addEventListener('click', () => {
 // No Button Evasion
 function moveNoButton(e) {
   if (e) e.preventDefault(); // Prevent touch click
-  
+
   const container = document.querySelector('.buttons');
   const containerRect = container.getBoundingClientRect();
   const btnRect = noBtn.getBoundingClientRect();
-  
+
   // Calculate available space
   const maxX = window.innerWidth - btnRect.width - 40;
   const maxY = window.innerHeight - btnRect.height - 40;
-  
+
   // Get random position outside the immediate vicinity if possible,
   // simply random viewport position is usually best for "running away"
   // providing it stays somewhat visible.
-  
+
   // Let's keep it local to the container if we can, or expand to body if needed.
   // Actually, random fixed position on screen is funniest.
-  
+
   let newX = Math.random() * (window.innerWidth - btnRect.width - 20) + 10;
   let newY = Math.random() * (window.innerHeight - btnRect.height - 20) + 10;
-  
+
   // Temporarily make it fixed so it can go anywhere
   noBtn.style.position = 'fixed';
   noBtn.style.left = newX + 'px';
@@ -196,7 +205,7 @@ class Confetti {
     ctx.translate(this.x, this.y);
     ctx.rotate((this.rotation * Math.PI) / 180);
     ctx.fillStyle = this.color;
-    ctx.fillRect(-this.size/2, -this.size/2, this.size, this.size);
+    ctx.fillRect(-this.size / 2, -this.size / 2, this.size, this.size);
     ctx.restore();
   }
 }
@@ -223,7 +232,7 @@ function createHeartExplosion() {
     heart.style.fontSize = Math.random() * 20 + 20 + 'px';
     const angle = Math.random() * Math.PI * 2;
     const velocity = Math.random() * 100 + 50;
-    
+
     // Animate
     heart.animate([
       { transform: 'translate(-50%, -50%) scale(0)', opacity: 1 },
@@ -232,7 +241,7 @@ function createHeartExplosion() {
       duration: 1500,
       easing: 'cubic-bezier(0, .9, .57, 1)'
     }).onfinish = () => heart.remove();
-    
+
     document.body.appendChild(heart);
   }
 }
