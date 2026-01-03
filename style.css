@@ -222,6 +222,121 @@ h1 span {
   transform: scale(0.97);
 }
 
+/* Magic Spotlight Section */
+.special-moment-section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 30px 0;
+  perspective: 1000px;
+}
+
+.special-moment-card {
+  width: 100%;
+  max-width: 340px;
+  background: white;
+  padding: 12px;
+  border-radius: 24px;
+  box-shadow:
+    0 20px 40px -10px rgba(0, 0, 0, 0.1),
+    0 0 0 1px rgba(255, 255, 255, 0.6) inset;
+  transform-style: preserve-3d;
+  transition: transform 0.1s ease-out;
+  /* Smooth tilt follow */
+}
+
+.spotlight-container {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  /* Fixed height for impact */
+  border-radius: 16px;
+  overflow: hidden;
+  background: #f3f4f6;
+  cursor: crosshair;
+  /* Hardware acceleration */
+  transform: translateZ(0);
+}
+
+.base-layer {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: blur(2px) grayscale(30%);
+  /* enhance the contrast with revealed version */
+  transition: all 0.5s ease;
+}
+
+.reveal-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  /* The Magic Mask */
+  -webkit-mask-image: radial-gradient(circle 120px at var(--x, 50%) var(--y, 50%), black 0%, transparent 90%);
+  mask-image: radial-gradient(circle 120px at var(--x, 50%) var(--y, 50%), black 0%, transparent 90%);
+  pointer-events: none;
+  /* Let clicks pass through */
+  opacity: 0;
+  /* Hidden by default until interaction */
+  transition: opacity 0.3s ease;
+  z-index: 10;
+}
+
+/* Show reveal layer on hover/interaction */
+.spotlight-container:hover .reveal-layer,
+.spotlight-container:active .reveal-layer {
+  opacity: 1;
+}
+
+.spotlight-hint {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 30px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+  z-index: 20;
+}
+
+.spotlight-container:hover .spotlight-hint {
+  opacity: 0;
+}
+
+.card-caption {
+  text-align: center;
+  padding-top: 16px;
+  padding-bottom: 4px;
+}
+
+.card-caption h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  color: var(--primary-dark);
+  margin-bottom: 4px;
+}
+
+.card-caption p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  opacity: 0.8;
+}
+
 .gallery-caption {
   font-family: 'Playfair Display', serif;
   font-size: 1.2rem;
