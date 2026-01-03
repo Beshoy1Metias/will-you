@@ -263,8 +263,8 @@ h1 span {
   height: 100%;
   object-fit: cover;
   display: block;
-  filter: blur(2px) grayscale(30%);
-  /* enhance the contrast with revealed version */
+  /* Make the "before" state more dramatic: Grayscale + Blur */
+  filter: grayscale(100%) blur(4px);
   transition: all 0.5s ease;
 }
 
@@ -276,22 +276,43 @@ h1 span {
   height: 100%;
   background-size: cover;
   background-position: center;
-  /* The Magic Mask */
-  -webkit-mask-image: radial-gradient(circle 120px at var(--x, 50%) var(--y, 50%), black 0%, transparent 90%);
-  mask-image: radial-gradient(circle 120px at var(--x, 50%) var(--y, 50%), black 0%, transparent 90%);
+
+  /* IMPROVED MASK: Larger size + Soft Edge + Subtle "Ring" hint via transparency curve */
+  -webkit-mask-image: radial-gradient(circle 150px at var(--x, 50%) var(--y, 50%),
+      black 0%,
+      black 80%,
+      rgba(0, 0, 0, 0.1) 95%,
+      transparent 100%);
+  mask-image: radial-gradient(circle 150px at var(--x, 50%) var(--y, 50%),
+      black 0%,
+      black 80%,
+      rgba(0, 0, 0, 0.1) 95%,
+      transparent 100%);
+
   pointer-events: none;
   /* Let clicks pass through */
   opacity: 0;
   /* Hidden by default until interaction */
-  transition: opacity 0.3s ease;
+  transition: opacity 0.2s ease;
   z-index: 10;
+  /* Enhance the revealed image */
+  filter: saturate(1.2) contrast(1.1);
 }
+
+/* Optional: Add a "Lens" border following the cursor using a pseudo-element on the container?
+   Hard with just CSS vars without creating another element.
+   Let's keep it simple but let the contrast speak.
+*/
 
 /* Show reveal layer on hover/interaction */
 .spotlight-container:hover .reveal-layer,
 .spotlight-container:active .reveal-layer {
   opacity: 1;
 }
+
+/* While revealing, maybe slightly unblur the base layer to reduce visual vibration?
+   Actually keeping it blurry makes the clean part pop more.
+*/
 
 .spotlight-hint {
   position: absolute;
