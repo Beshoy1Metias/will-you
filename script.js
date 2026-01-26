@@ -32,7 +32,7 @@ const specialLines = [
   "I'm addicted to you", "Sono dipendente da te",
   "You're my everything", "Sei il mio tutto",
   "I wanna do like the cat forever", "Voglio fare come il gatto per sempre",
-  "Te amo", "Ti amo",
+  "Ti amo", "Per una persona speciale"
   "I'm in love with you", "Sono innamorato di te"
 ];
 
@@ -373,3 +373,4 @@ function handleSwipe() {
     }
   }
 }
+
